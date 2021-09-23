@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StopWatch Using JavaScript and Bootstrap</title>
+	<style type="text/css">
+		.timer-time {
+    line-height:1em;
+    font-size: 6em;
+}
+
+.timer-container {
+  height: 1em;
+  overflow: hidden;
+  position: relative;
+}
+
+.timer-box {
+  height: 1em;
+  margin: auto;
+  position: relative;
+}
+
+.timer-box > span {
+  position: relative;
+}
+
+.navbar-brand {
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
+}
+
+	</style>
+	<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body style="background-color: indigo;">
+  <nav class="navbar navbar-expand-lg bg-primary">
+    <a class="text-center null navbar-brand text-white" style="font-size: 30px;">StopWatch</a>
+   </nav>  
+  <div class="conatiner " style="margin-top:220px;background-color:indigo;">
+    <div class="panel panel-default" style=" border:none;">
+      <div class="panel-body text-center text-white" style="background-color:indigo; color:white; width:auto;">
+        <div class="timer-time timer-container">
+          <div class="timer-time-set timer-box" id="stopwatch">
+            <span id="hoursValue">00:00:00</span>
+          </div>
+
+        </div>
+        <div>
+          <button id="restartButton" class="btn btn-warning btn-lg" type="submit" onclick="resetTimer()">
+            <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span> Reset
+          </button>
+          <button id="startButton" class="btn btn-primary btn-lg" type="submit" onclick="startTimer()">
+            <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start
+          </button>
+          <button id="stopButton" class="btn btn-danger btn-lg" type="submit" onclick="stopTimer()">
+            <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop
+          </button>
+        </div>
+      </div>
+
+    </div>
+    		</div>
+
+        <!-- Footer -->
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">Created By Muhammad Bilal Khan
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+    	<script type="text/javascript">
+    		const timer = document.getElementById('stopwatch');
+
+var hr = 0;
+var min = 0;
+var sec = 0;
+var stoptime = true;
+
+function startTimer() {
+  if (stoptime == true) {
+        stoptime = false;
+        timerCycle();
+    }
+}
+function stopTimer() {
+  if (stoptime == false) {
+    stoptime = true;
+  }
+}
+
+function timerCycle() {
+    if (stoptime == false) {
+    sec = parseInt(sec);
+    min = parseInt(min);
+    hr = parseInt(hr);
+
+    sec = sec + 1;
+
+    if (sec == 60) {
+      min = min + 1;
+      sec = 0;
+    }
+    if (min == 60) {
+      hr = hr + 1;
+      min = 0;
+      sec = 0;
+    }
+
+    if (sec < 10 || sec == 0) {
+      sec = '0' + sec;
+    }
+    if (min < 10 || min == 0) {
+      min = '0' + min;
+    }
+    if (hr < 10 || hr == 0) {
+      hr = '0' + hr;
+    }
+
+    timer.innerHTML = hr + ':' + min + ':' + sec;
+
+    setTimeout("timerCycle()", 1000);
+  }
+}
+
+function resetTimer() {
+    timer.innerHTML = "00:00:00";
+    stoptime = true;
+    hr = 0;
+    sec = 0;
+    min = 0;
+}
+    	</script>
+
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
